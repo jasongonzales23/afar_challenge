@@ -1,7 +1,9 @@
 Afar::Application.routes.draw do
-  get "multiplexer/index"
+  devise_for :users
 
-  root :to => 'multiplexer#index'
+  match "/multiplexer", to: "multiplexer#index", via: "get"
+
+  root :to => 'highlights#index'
 
   resources :highlights
 
