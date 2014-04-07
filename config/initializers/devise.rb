@@ -63,7 +63,11 @@ Devise.setup do |config|
 
   # The realm used in Http Basic Authentication. "Application" by default.
   config.http_authentication_realm = "Application"
-  config.secret_key = 'dd81079df5ed7ba100d305be2efb0aae776918715a54432259345c04f2eac715a30348752ccbcd800b5d9bd71fb97cee3542b6d4669e2377157ec3d719306499'
+  config.secret_key = if Rails.env.development? or Rails.env.test
+                        ('x' * 30)
+                      else
+                        ENV['SECRET_KEY']
+                      end
 
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
