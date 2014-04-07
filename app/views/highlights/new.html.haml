@@ -1,0 +1,14 @@
+=form_for :highlight, url: highlights_path do |f|
+  %div
+    %p
+      =f.label :title
+    %p
+      =f.text_field :title
+  %div
+    %p
+      =f.label :description
+    %p
+      =f.text_area :description
+  %p
+    =f.submit
+
