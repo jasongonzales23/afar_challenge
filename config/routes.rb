@@ -7,6 +7,9 @@ Afar::Application.routes.draw do
 
   resources :highlights
 
+  match "/users/:id", to: "users#show", via: "get", as: :user
+  match "/users/", to: "users#index", via: "get"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

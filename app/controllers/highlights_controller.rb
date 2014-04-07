@@ -1,11 +1,19 @@
 class HighlightsController < ApplicationController
+
+  before_filter :authenticate_user!, only: [:create]
+
   def new
   end
 
   def create
-    @highlight = Highlight.new(params[:highlight])
-    @highlight.save
-    redirect_to @highlight
+    @highlight = current_user.highlights.build(params[:highlight])
+
+    if @highlight.save
+      flash[:success] = "Highlight Created!"
+      redirect_to @highlight
+    else
+      render 'index'
+    end
   end
 
   def index
